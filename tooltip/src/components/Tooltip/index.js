@@ -6,10 +6,10 @@ const Tooltip = (props) => {
 	let timeout;
 	const [active, setActive] = useState(false);
 
-	const showTip = () => {
+	const show = () => {
 		timeout = setTimeout(() => {
             setActive(true);
-            // This is fot tooltip arrow
+            // This is for tooltip arrow
             if(props.style.backgroundColor)
                 document.documentElement.style.setProperty('--tooltip-text-color',props.style.color);
             if(props.style.color)
@@ -18,7 +18,7 @@ const Tooltip = (props) => {
 		}, props.delay || 400);
 	};
 
-	const hideTip = () => {
+	const hide = () => {
 		clearInterval(timeout);
 		setActive(false);
 	};
@@ -27,11 +27,11 @@ const Tooltip = (props) => {
 		<div
             className='wrapper-tooltip'
 			// When to show the tooltip
-			onMouseEnter={showTip}
-			onMouseLeave={hideTip}>
+			onMouseEnter={show}
+			onMouseLeave={hide}>
 			{props.children}
 			{active && (
-				<div className={`Tooltip-Tip ${props.direction || "top"}`} style={props.style}>
+				<div className={`tooltip ${props.direction || "top"}`} style={props.style}>
 					{/* Content, can be html */}
 					{props.content}
 				</div>

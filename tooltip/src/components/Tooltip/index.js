@@ -41,7 +41,10 @@ Tooltip.defaultProps = {
 };
 
 const propTypes = {
-    content: PropTypes.string.isRequired,
+    content: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	  ]),
     direction: PropTypes.string,
     style: PropTypes.object,
     children: PropTypes.node.isRequired,

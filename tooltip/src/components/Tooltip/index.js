@@ -9,12 +9,6 @@ const Tooltip = (props) => {
 	const show = () => {
 		timeout = setTimeout(() => {
             setActive(true);
-            // This is for tooltip arrow
-            if(props.style.backgroundColor)
-                document.documentElement.style.setProperty('--tooltip-text-color',props.style.color);
-            if(props.style.color)
-                document.documentElement.style.setProperty('--tooltip-background-color',props.style.backgroundColor);
-
 		}, props.delay || 400);
 	};
 

@@ -1,5 +1,6 @@
 const http = require('http');
 const createdProxy = require('../lib')
+const { env } = require('./config')
 
 // Block the IP
 function ipBlock(req,res){
@@ -32,9 +33,9 @@ function logging(response){
 
 // Proxy server
 async function onRequest(req, res) {
-    const options = {
-        hostname: 'localhost',
-        port: 3000
+     const options = {
+        hostname: env.HOSTNAME,
+        port: env.PORT
     }
     const proxy = createdProxy(req, res, options)
 

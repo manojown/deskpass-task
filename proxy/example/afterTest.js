@@ -1,38 +1,25 @@
 const http = require('http');
 const createdProxy = require('../lib')
+const {env} = require('./config')
 
 
-
-// Loging the response, here i'm not use body parser to parse manually 
-function responseParser(response){
-    var data = [];
-    //another chunk of data has been received, so append it to `str`
-    response.on('data', function (chunk) {
-      data.push(chunk);
-    });
-    //the whole response has been received, so we just print it out here
-    response.on('end', function () {
-        var buffer = Buffer.concat(data);
-        response.data = buffer.toString('utf8')
-    });
-}
 
 // Loging the response, here i'm not use body parser to parse manually 
 function logging(response){
-    console.log("response",response.data)
+    console.log("response",response)
 }
-
+ 
 
 // Proxy server
 async function onRequest(req, res) {
     const options = {
-        hostname: 'localhost',
-        port: 3000
+        hostname: env.HOSTNAME,
+        port: env.PORT
     }
 
     const proxy = createdProxy(req, res, options)
     // Middleware plugin example
-    proxy.after([responseParser,logging]);
+    proxy.after([logging]);
     proxy.run()
 
     proxy.on('error', function(err){

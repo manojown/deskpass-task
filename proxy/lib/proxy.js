@@ -1,4 +1,7 @@
-const http = require("http");
+const  https = require('https');
+const  http = require('http');
+
+
 const EE3 = require("events");
 
 function ProxyServer(client_req, client_res, option) {
@@ -6,21 +9,27 @@ function ProxyServer(client_req, client_res, option) {
 	this.client_res = client_res;
 	this.beforeCallbacks = [];
 	this.afterCallbacks = [];
-
 	this.run = async() => {
 		try {
+			// Switch to https package if request redirect to https
+			let API = option.port === 443 ? https : http
 			var options = {
 				...option,
 				path: this.client_req.url,
 				method: this.client_req.method,
 				headers: this.client_req.headers,
 				body: this.client_req.body,
+				rejectUnauthorized: false,
+				encoding: null
 			};
+
 
 			await this.processBefore(this.beforeCallbacks, this.client_req, this.client_res);
 
-			this.proxy = http.request(options, async (response) => {
+			this.proxy = API.request(options, async (response) => {
+				// response.setHeader("Set-Cookie", "returning=true")
 				await this.processAfter(this.afterCallbacks, response);
+
 				this.client_res.writeHead(response.statusCode, response.headers);
 				response.pipe(this.client_res, {
 					end: true,

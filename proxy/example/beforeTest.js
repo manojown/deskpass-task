@@ -1,17 +1,19 @@
 const http = require('http');
 const createdProxy = require('../lib')
+const { env } = require('./config')
 
 // Block the IP
 function ipBlock(req,res){
-    console.log("ipBlock",res.body)
+  // to get body need to add bodyparser as a plugin
+    console.log("ipBlock",req.body)
     throw new Error("not authorized")
 
 }
 
 async function onRequest(req, res) {
     const options = {
-        hostname: 'localhost',
-        port: 3000
+        hostname: env.HOSTNAME,
+        port: env.PORT
     }
     const proxy = createdProxy(req, res, options)
 

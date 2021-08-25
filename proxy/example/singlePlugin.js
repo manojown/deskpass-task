@@ -1,5 +1,6 @@
 const http = require('http');
 const createdProxy = require('../lib')
+const { env } = require('./config')
 
 
 // Block the IP plugin
@@ -16,8 +17,8 @@ function ipBlock(req,res){
 async function onRequest(req, res) {
     // Redirection options
     const options = {
-        hostname: 'localhost',
-        port: 3000
+        hostname: env.HOSTNAME,
+        port: env.PORT
     }
 
     const proxy = createdProxy(req, res, options)

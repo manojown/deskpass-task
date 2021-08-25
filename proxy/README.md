@@ -1,4 +1,5 @@
 ## Proxy Server
+## All the hostname and port option you can set in config.js file which available in the example folder
 ## What I'm trying to do
    Here I'm only trying to explain how we can configure plugin support and proxy can be configured with life cycle methods, so there is not handle all the cases like SSL, HTTP, HTTPS, HTTP-to-HTTPS.
    this needs extra work to configure the HTTP, HTTPS package, and SSL handing.

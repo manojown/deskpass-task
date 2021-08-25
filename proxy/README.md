@@ -1,22 +1,21 @@
 ## Proxy Server
-## What i'm trying to do
-   Here i'm only trying to explaining how we can configure plugin support and proxy can be configured with life cycle methods, so there is not handle all the cases like ssl, http, https , http-to-https.
-   this need another extra work to confgire http https package and ssl handing.
+## What I'm trying to do
+   Here I'm only trying to explain how we can configure plugin support and proxy can be configured with life cycle methods, so there is not handle all the cases like SSL, HTTP, HTTPS, HTTP-to-HTTPS.
+   this needs extra work to configure the HTTP, HTTPS package, and SSL handing.
 ### life cycle methods
     *   Before 
-            To run any method before seding the request to origin 
-            params - request, response.
-            if any error occurs during execution handler end the response and send back to client.
-            if you throw the error with message than that immidiatle passes to client and end the request cycle
+            To run any method before sending the request to origin params required - request, response.
+            if any error occurs during the execution handler end the response and send it back to the client.
+            if you throw the error with the message then that immediately passes to the client and end the request cycle
     *   After
-            To run any method after getting the response from origin
-            Opeartion can be - loggin the response, edit the response header etc.
+            To run any method after getting the response from the origin
+            The operation can be - logging the response, edit the response header, etc.
             params - response.
-            if any error occurs during execution handler end the response and send back to client.
-            if you throw the error with message than that immidiatle passes to client and end the request cycle
+            if any error occurs during the execution handler end the response and send it back to the client.
+            if you throw the error with the message then that immediately passes to the client and end the request cycle
     *   Run 
-            Traditional Run method to start proxy.
+            Traditional Run method to start the proxy.
 
-## There is many way to provide plugin support
+## There are many ways to provide plugin support
     1. via middleware support - connect 
     2. Event emitter - added event emitter support in future if need to add any event, for now just added error event to handle the error on proxy

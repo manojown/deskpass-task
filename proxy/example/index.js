@@ -28,6 +28,8 @@ function responseParser(response){
 function logging(response){
     console.log("response",response.data)
 }
+
+
 // Proxy server
 async function onRequest(req, res) {
     const options = {
@@ -36,6 +38,7 @@ async function onRequest(req, res) {
     }
     const proxy = createdProxy(req, res, options)
 
+    // to register your function with before  and after hook
     proxy.before([bodyParser,ipBlock]);
     proxy.after([responseParser,logging]);
     proxy.run()

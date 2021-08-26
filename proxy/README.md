@@ -1,7 +1,8 @@
 ## Proxy Server
+    Here i'm  not using any third party npm library and trying configure with native node.js modules.
 ## All the hostname and port option you can set in config.js file which available in the example folder
 ## What I'm trying to do
-   Here I'm only trying to explain how we can configure plugin support and proxy can be configured with life cycle methods, so there is not handle all the cases like SSL, HTTP, HTTPS, HTTP-to-HTTPS.
+   Here I'm only trying to explain how we can configure plugin support and proxy can be configured with life cycle methods.
    this needs extra work to configure the HTTP, HTTPS package, and SSL handing.
 ### life cycle methods
     *   Before 
